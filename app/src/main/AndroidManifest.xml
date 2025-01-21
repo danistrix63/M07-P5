@@ -11,7 +11,7 @@
 
         <!-- Actividad Principal -->
         <activity
-            android:name="com.example.m07_p5.MainActivity"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,15 +21,15 @@
 
         <!-- Actividades Secundarias -->
         <activity
-            android:name="com.example.m07_p5.AddFoodActivity"
+            android:name=".AddFoodActivity"
             android:exported="false" />
 
         <activity
-            android:name="com.example.m07_p5.ConsumptionDatesActivity"
+            android:name=".ConsumptionDatesActivity"
             android:exported="false" />
 
         <activity
-            android:name="com.example.m07_p5.LoginActivity"
+            android:name=".LoginActivity"
             android:exported="false" />
 
         <activity
@@ -37,15 +37,15 @@
             android:exported="false" />
 
         <activity
-            android:name="com.example.m07_p5.RecoverPasswordActivity"
+            android:name=".RecoverPasswordActivity"
             android:exported="false" />
 
         <activity
-            android:name="com.example.m07_p5.RegisterActivity"
+            android:name=".RegisterActivity"
             android:exported="false" />
 
         <activity
-            android:name="com.example.m07_p5.TrackingActivity"
+            android:name=".TrackingActivity"
             android:exported="false" />
 
     </application>

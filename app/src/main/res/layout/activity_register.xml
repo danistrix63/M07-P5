@@ -50,7 +50,7 @@
             android:textColor="@color/md_theme_onPrimary" />
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/footer_fragment"
-            android:name="com.example.m07_p4.FooterFragment"
+            android:name="com.example.m07_p5.FooterFragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom" />
