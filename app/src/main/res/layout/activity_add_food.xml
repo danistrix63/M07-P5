@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="@color/md_theme_background"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <!-- Título -->
+        <TextView
+            android:id="@+id/tv_add_food_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/add_food"
+            android:textSize="24sp"
+            style="@style/TitleStyle"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Nombre del alimento -->
+        <EditText
+            android:id="@+id/et_food_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/food_name"
+            android:inputType="text"
+            style="@style/EditTextStyle"
+            android:layout_marginTop="8dp" />
+
+        <!-- Cantidad -->
+        <EditText
+            android:id="@+id/et_food_quantity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/quantity"
+            android:inputType="numberDecimal"
+            style="@style/EditTextStyle"
+            android:layout_marginTop="12dp" />
+
+        <!-- Unidad de medida -->
+        <Spinner
+            android:id="@+id/spinner_unit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:contentDescription="@string/unit_selection" />
+
+        <!-- Categoría -->
+        <Spinner
+            android:id="@+id/spinner_category"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:contentDescription="@string/category_selection" />
+
+        <!-- Botón Guardar -->
+        <Button
+            android:id="@+id/btn_save_food"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/save"
+            style="@style/ButtonStyle"
+            android:layout_marginTop="24dp" />
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/footer_fragment"
+            android:name="com.example.m07_p4.FooterFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom" />
+
+    </LinearLayout>
+</ScrollView>

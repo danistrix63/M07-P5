@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/md_theme_background"
+    android:padding="16dp"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <!-- Título -->
+        <TextView
+            android:id="@+id/tv_consumption_dates_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/consumption_dates_title"
+            android:textSize="24sp"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="@color/md_theme_primary"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Selector de Fecha -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:id="@+id/tv_select_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/select_date"
+                android:textSize="16sp"
+                android:fontFamily="sans-serif"
+                android:textColor="@color/md_theme_onBackground"
+                android:layout_marginEnd="8dp" />
+
+            <Button
+                android:id="@+id/btn_date_picker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/pick_date"
+                android:backgroundTint="@color/md_theme_primary"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
+
+        <!-- Lista de Alimentos Consumidos -->
+        <TextView
+            android:id="@+id/tv_food_list_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/food_list_title"
+            android:textSize="18sp"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="@color/md_theme_primary"
+            android:layout_marginBottom="8dp" />
+
+        <ListView
+            android:id="@+id/lv_consumed_food"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="@android:color/darker_gray"
+            android:dividerHeight="1dp"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Botón para agregar alimentos -->
+        <Button
+            android:id="@+id/btn_add_food"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/add_food"
+            android:backgroundTint="@color/md_theme_primary"
+            android:textColor="@android:color/white"
+            android:padding="12dp"
+            android:layout_marginTop="16dp" />
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/footer_fragment"
+            android:name="com.example.m07_p4.FooterFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom" />
+
+    </LinearLayout>
+</ScrollView>

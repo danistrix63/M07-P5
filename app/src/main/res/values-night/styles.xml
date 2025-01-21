@@ -1,0 +1,12 @@
+<resources>
+    <style name="EditTextStyle.Dark" parent="Widget.Material3.TextInputLayout.OutlinedBox.Dense">
+        <item name="android:backgroundTint">@color/md_theme_primary</item>
+        <item name="android:textColor">@color/md_theme_onBackground</item>
+        <item name="hintTextColor">@color/md_theme_onSurface</item>
+    </style>
+
+    <style name="ButtonStyle.Dark" parent="Widget.Material3.Button">
+        <item name="android:backgroundTint">@color/md_theme_primary</item>
+        <item name="android:textColor">@color/md_theme_onPrimary</item>
+    </style>
+</resources>

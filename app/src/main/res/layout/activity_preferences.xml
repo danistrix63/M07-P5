@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/md_theme_background"
+    android:padding="16dp"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <!-- Título -->
+        <TextView
+            android:id="@+id/tv_preferences_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/preferences_title"
+            android:textSize="24sp"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="@color/md_theme_primary"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Modo oscuro -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/tv_dark_mode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dark_mode"
+                android:textSize="16sp"
+                android:fontFamily="sans-serif"
+                android:textColor="@color/md_theme_onBackground" />
+
+            <Switch
+                android:id="@+id/switch_dark_mode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                tools:ignore="UseSwitchCompatOrMaterialXml" />
+        </LinearLayout>
+
+        <!-- Notificaciones -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/tv_notifications"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/notifications"
+                android:textSize="16sp"
+                android:fontFamily="sans-serif"
+                android:textColor="@color/md_theme_onBackground" />
+
+            <Switch
+                android:id="@+id/switch_notifications"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                tools:ignore="UseSwitchCompatOrMaterialXml" />
+        </LinearLayout>
+
+        <!-- Selección de unidades de medida -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/tv_units"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/units"
+                android:textSize="16sp"
+                android:fontFamily="sans-serif"
+                android:textColor="@color/md_theme_onBackground"
+                android:layout_marginBottom="8dp" />
+
+            <Spinner
+                android:id="@+id/spinner_units"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/md_theme_primary" />
+        </LinearLayout>
+
+        <!-- Botón de guardar -->
+        <Button
+            android:id="@+id/btn_save_preferences"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/save_preferences"
+            android:backgroundTint="@color/md_theme_primary"
+            android:textColor="@android:color/white"
+            android:layout_marginTop="24dp"
+            android:padding="12dp" />
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/footer_fragment"
+            android:name="com.example.m07_p4.FooterFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom" />
+
+    </LinearLayout>
+</ScrollView>

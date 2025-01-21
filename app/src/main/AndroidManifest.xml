@@ -1,0 +1,53 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.m07_p5">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.NutriTrack">
+
+        <!-- Actividad Principal -->
+        <activity
+            android:name="com.example.m07_p5.MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Actividades Secundarias -->
+        <activity
+            android:name="com.example.m07_p5.AddFoodActivity"
+            android:exported="false" />
+
+        <activity
+            android:name="com.example.m07_p5.ConsumptionDatesActivity"
+            android:exported="false" />
+
+        <activity
+            android:name="com.example.m07_p5.LoginActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".PreferencesActivity"
+            android:exported="false" />
+
+        <activity
+            android:name="com.example.m07_p5.RecoverPasswordActivity"
+            android:exported="false" />
+
+        <activity
+            android:name="com.example.m07_p5.RegisterActivity"
+            android:exported="false" />
+
+        <activity
+            android:name="com.example.m07_p5.TrackingActivity"
+            android:exported="false" />
+
+    </application>
+
+</manifest>
