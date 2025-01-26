@@ -1,34 +1,130 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:padding="16dp"
     android:background="@color/md_theme_background">
 
+    <!-- Título -->
     <TextView
+        android:id="@+id/txt_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Lista de Alimentos"
         android:textSize="24sp"
+        android:textStyle="bold"
         android:textColor="@color/md_theme_onBackground"
-        android:layout_gravity="center_horizontal"
+        android:layout_centerHorizontal="true"
         android:layout_marginBottom="16dp"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view"
+    <!-- Separador -->
+    <View
+        android:id="@+id/separador"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:padding="8dp"
-        android:scrollbars="vertical"/>
+        android:layout_height="1dp"
+        android:background="@color/md_theme_onSurface"
+        android:layout_below="@id/txt_title"
+        android:layout_marginBottom="12dp"/>
 
+    <!-- Lista de alimentos -->
+    <LinearLayout
+        android:id="@+id/layout_food_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@id/separador">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="🍏 Manzana - 52 kcal"
+            android:textSize="18sp"
+            android:textColor="@color/md_theme_onBackground"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="🍗 Pollo a la plancha - 165 kcal"
+            android:textSize="18sp"
+            android:textColor="@color/md_theme_onBackground"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="🍚 Arroz blanco - 130 kcal"
+            android:textSize="18sp"
+            android:textColor="@color/md_theme_onBackground"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="🥦 Brócoli - 55 kcal"
+            android:textSize="18sp"
+            android:textColor="@color/md_theme_onBackground"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="🐟 Salmón - 208 kcal"
+            android:textSize="18sp"
+            android:textColor="@color/md_theme_onBackground"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="🍞 Pan integral - 247 kcal"
+            android:textSize="18sp"
+            android:textColor="@color/md_theme_onBackground"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="🧀 Queso cheddar - 403 kcal"
+            android:textSize="18sp"
+            android:textColor="@color/md_theme_onBackground"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="🥚 Huevo - 78 kcal"
+            android:textSize="18sp"
+            android:textColor="@color/md_theme_onBackground"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="🥩 Bistec de res - 271 kcal"
+            android:textSize="18sp"
+            android:textColor="@color/md_theme_onBackground"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="🥜 Almendras - 576 kcal"
+            android:textSize="18sp"
+            android:textColor="@color/md_theme_onBackground"
+            android:layout_marginBottom="8dp"/>
+    </LinearLayout>
+
+    <!-- Botón Flotante para Añadir Alimento -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_add_food"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="end|bottom"
-        android:layout_margin="16dp"
         android:src="@drawable/ic_add"
-        android:contentDescription="Añadir alimento"/>
-</LinearLayout>
+        android:contentDescription="Añadir alimento"
+        android:backgroundTint="@color/md_theme_primary"
+        android:tint="@color/md_theme_onPrimary"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="16dp"/>
+</RelativeLayout>
