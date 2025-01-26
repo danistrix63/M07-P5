@@ -3,71 +3,47 @@ package com.example.m07_p5
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import android.widget.Button
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import androidx.fragment.app.Fragment
+import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var drawerLayout: DrawerLayout
+    private lateinit var navView: NavigationView
+    private lateinit var bottomNav: BottomNavigationView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        findViewById<Button>(R.id.btn_login)?.setOnClickListener {
-            startActivity(Intent(this, LoginActivity::class.java))
-        }
+        val toolbar: androidx.appcompat.widget.Toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
 
-        findViewById<Button>(R.id.btn_register)?.setOnClickListener {
-            startActivity(Intent(this, RegisterActivity::class.java))
-        }
+        drawerLayout = findViewById(R.id.drawer_layout)
+        navView = findViewById(R.id.navigation_view)
 
-        findViewById<Button>(R.id.btn_recover_password)?.setOnClickListener {
-            startActivity(Intent(this, RecoverPasswordActivity::class.java))
-        }
+        val toggle = ActionBarDrawerToggle(
+            this, drawerLayout, toolbar,
+            R.string.navigation_drawer_open, R.string.navigation_drawer_close
+        )
+        drawerLayout.addDrawerListener(toggle)
+        toggle.syncState()
 
-        findViewById<Button>(R.id.btn_tracking)?.setOnClickListener {
-            startActivity(Intent(this, TrackingActivity::class.java))
-        }
-
-        findViewById<Button>(R.id.btn_add_food)?.setOnClickListener {
-            startActivity(Intent(this, AddFoodActivity::class.java))
-        }
-
-        findViewById<Button>(R.id.btn_preferences)?.setOnClickListener {
-            startActivity(Intent(this, PreferencesActivity::class.java))
-        }
-
-        findViewById<Button>(R.id.btn_dates)?.setOnClickListener {
-            startActivity(Intent(this, ConsumptionDatesActivity::class.java))
-        }
-
-        val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_navigation)
-        bottomNav.setOnItemSelectedListener { item ->
+        navView.setNavigationItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.nav_home -> {
-                    loadFragment(HomeFragment())
-                    true
-                }
-                R.id.nav_list -> {
-                    loadFragment(ListFragment())
-                    true
-                }
-                R.id.nav_settings -> {
-                    loadFragment(SettingsFragment())
-                    true
-                }
-                else -> false
+                R.id.nav_home -> startActivity(Intent(this, MainActivity::class.java))
+                R.id.nav_list -> startActivity(Intent(this, ListActivity::class.java))
+                R.id.nav_profile -> startActivity(Intent(this, LoginActivity::class.java))
+                R.id.nav_tracking -> startActivity(Intent(this, TrackingActivity::class.java))
+                R.id.nav_dates -> startActivity(Intent(this, ConsumptionDatesActivity::class.java))
+                R.id.nav_add_food -> startActivity(Intent(this, AddFoodActivity::class.java))
+                R.id.nav_settings -> startActivity(Intent(this, PreferencesActivity::class.java))
+                R.id.nav_logout -> finish()
             }
+            drawerLayout.closeDrawers()
+            true
         }
-
-        // Cargar fragmento inicial (Home)
-        if (savedInstanceState == null) {
-            loadFragment(HomeFragment())
-        }
-    }
-
-    private fun loadFragment(fragment: Fragment) {
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container, fragment)
-            .commit()
     }
 }

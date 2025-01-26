@@ -4,36 +4,32 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.Fragment
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import org.json.JSONArray
 
-class ListFragment : Fragment() {
+class ListActivity : AppCompatActivity() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: FoodAdapter
     private lateinit var fabAddFood: FloatingActionButton
     private val foodList = mutableListOf<FoodItem>()
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.fragment_list, container, false)
-        recyclerView = view.findViewById(R.id.recycler_view)
-        fabAddFood = view.findViewById(R.id.fab_add_food)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_list)
 
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        recyclerView = findViewById(R.id.recycler_view)
+        fabAddFood = findViewById(R.id.fab_add_food)
+
+        recyclerView.layoutManager = LinearLayoutManager(this)
 
         adapter = FoodAdapter(foodList,
             onItemClick = { food ->
-                val intent = Intent(requireContext(), EditFoodActivity::class.java).apply {
+                val intent = Intent(this, EditFoodActivity::class.java).apply {
                     putExtra("FOOD_ID", food.id)
                     putExtra("FOOD_NAME", food.name)
                     putExtra("FOOD_QUANTITY", food.quantity)
@@ -51,15 +47,13 @@ class ListFragment : Fragment() {
         // Acción del FloatingActionButton para abrir AddFoodActivity
         fabAddFood.setOnClickListener {
             try {
-                val intent = Intent(requireContext(), AddFoodActivity::class.java)
+                val intent = Intent(this, AddFoodActivity::class.java)
                 startActivity(intent)
             } catch (e: Exception) {
-                Log.e("ListFragment", "Error al abrir AddFoodActivity", e)
-                Toast.makeText(requireContext(), "Error al abrir la pantalla de agregar alimentos", Toast.LENGTH_SHORT).show()
+                Log.e("ListActivity", "Error al abrir AddFoodActivity", e)
+                Toast.makeText(this, "Error al abrir la pantalla de agregar alimentos", Toast.LENGTH_SHORT).show()
             }
         }
-
-        return view
     }
 
     override fun onResume() {
@@ -69,7 +63,7 @@ class ListFragment : Fragment() {
 
     private fun loadFoodItems() {
         foodList.clear()
-        val sharedPref = requireContext().getSharedPreferences("food_list", Context.MODE_PRIVATE)
+        val sharedPref = getSharedPreferences("food_list", Context.MODE_PRIVATE)
         val foodListString = sharedPref.getString("foods", "[]") ?: "[]"
         val jsonArray = JSONArray(foodListString)
 
@@ -88,7 +82,7 @@ class ListFragment : Fragment() {
     }
 
     private fun removeFoodItem(position: Int) {
-        val sharedPref = requireContext().getSharedPreferences("food_list", Context.MODE_PRIVATE)
+        val sharedPref = getSharedPreferences("food_list", Context.MODE_PRIVATE)
         val editor = sharedPref.edit()
 
         val foodListString = sharedPref.getString("foods", "[]") ?: "[]"
