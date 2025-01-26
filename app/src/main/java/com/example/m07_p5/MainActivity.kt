@@ -2,37 +2,46 @@ package com.example.m07_p5
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ListView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
+import androidx.appcompat.app.ActionBarDrawerToggle
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var txtCalories: TextView
+    private lateinit var txtMacros: TextView
+    private lateinit var listFoodHistory: ListView
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var navView: NavigationView
-    private lateinit var bottomNav: BottomNavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val toolbar: androidx.appcompat.widget.Toolbar = findViewById(R.id.toolbar)
-        setSupportActionBar(toolbar)
-
-        // Configurar DrawerLayout y NavigationView
+        // Asignar vistas
+        txtCalories = findViewById(R.id.txt_calories)
+        txtMacros = findViewById(R.id.txt_macros)
+        listFoodHistory = findViewById(R.id.list_food_history)
         drawerLayout = findViewById(R.id.drawer_layout)
         navView = findViewById(R.id.navigation_view)
-        bottomNav = findViewById(R.id.bottom_navigation)
 
-        val toggle = androidx.appcompat.app.ActionBarDrawerToggle(
+        // Configurar la Toolbar
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
+
+        // Habilitar el botón del menú lateral
+        val toggle = ActionBarDrawerToggle(
             this, drawerLayout, toolbar,
             R.string.navigation_drawer_open, R.string.navigation_drawer_close
         )
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
 
-        // Manejo del menú lateral (NavigationView)
+        // Manejo del menú lateral con todas las opciones correctas
         navView.setNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_home -> startActivity(Intent(this, MainActivity::class.java))
@@ -42,50 +51,27 @@ class MainActivity : AppCompatActivity() {
                 R.id.nav_dates -> startActivity(Intent(this, ConsumptionDatesActivity::class.java))
                 R.id.nav_add_food -> startActivity(Intent(this, AddFoodActivity::class.java))
                 R.id.nav_settings -> startActivity(Intent(this, PreferencesActivity::class.java))
-                R.id.nav_logout -> {
-                    finishAffinity() // Cierra la app completamente
-                }
+                R.id.nav_logout -> finishAffinity()
             }
             drawerLayout.closeDrawers()
             true
         }
 
-        // Manejo del Bottom Navigation
-        bottomNav.setOnItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.nav_home -> {
-                    if (javaClass.simpleName != "MainActivity") {
-                        startActivity(Intent(this, MainActivity::class.java))
-                        overridePendingTransition(0, 0)
-                        finish()
-                    }
-                    true
-                }
-                R.id.nav_list -> {
-                    if (javaClass.simpleName != "ListActivity") {
-                        startActivity(Intent(this, ListActivity::class.java))
-                        overridePendingTransition(0, 0)
-                        finish()
-                    }
-                    true
-                }
-                R.id.nav_settings -> {
-                    if (javaClass.simpleName != "PreferencesActivity") {
-                        startActivity(Intent(this, PreferencesActivity::class.java))
-                        overridePendingTransition(0, 0)
-                        finish()
-                    }
-                    true
-                }
-                else -> false
-            }
-        }
+        // Simular datos de prueba
+        actualizarDashboard()
+    }
 
-        // Marcar la pestaña activa en el BottomNavigationView
-        when (javaClass.simpleName) {
-            "MainActivity" -> bottomNav.selectedItemId = R.id.nav_home
-            "ListActivity" -> bottomNav.selectedItemId = R.id.nav_list
-            "PreferencesActivity" -> bottomNav.selectedItemId = R.id.nav_settings
-        }
+    private fun actualizarDashboard() {
+        val caloriasConsumidas = 1800
+        val carbohidratos = 220
+        val proteinas = 90
+        val grasas = 60
+        val historialAlimentos = listOf("Manzana - 95 kcal", "Pollo - 250 kcal", "Arroz - 200 kcal")
+
+        txtCalories.text = "Calorías consumidas hoy: $caloriasConsumidas kcal"
+        txtMacros.text = "Carbohidratos: ${carbohidratos}g | Proteínas: ${proteinas}g | Grasas: ${grasas}g"
+
+        val adapter = android.widget.ArrayAdapter(this, android.R.layout.simple_list_item_1, historialAlimentos)
+        listFoodHistory.adapter = adapter
     }
 }

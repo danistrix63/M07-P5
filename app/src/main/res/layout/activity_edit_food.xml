@@ -19,26 +19,50 @@
             android:textColor="@color/md_theme_primary"
             android:layout_marginBottom="16dp"/>
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nombre del alimento"
+            android:textSize="16sp"
+            android:textColor="@color/md_theme_onSurface"
+            android:layout_marginBottom="4dp"/>
+
         <EditText
             android:id="@+id/edit_food_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nombre del alimento"
+            android:hint="Ejemplo: Manzana"
             android:layout_marginBottom="12dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cantidad"
+            android:textSize="16sp"
+            android:textColor="@color/md_theme_onSurface"
+            android:layout_marginBottom="4dp"/>
 
         <EditText
             android:id="@+id/edit_food_quantity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Cantidad"
+            android:hint="Ejemplo: 100 (gramos)"
             android:inputType="numberDecimal"
             android:layout_marginBottom="12dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Fecha de consumo"
+            android:textSize="16sp"
+            android:textColor="@color/md_theme_onSurface"
+            android:layout_marginBottom="4dp"/>
 
         <EditText
             android:id="@+id/edit_food_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Fecha de consumo"
+            android:hint="DD/MM/AAAA"
             android:inputType="date"
             android:layout_marginBottom="12dp"/>
 

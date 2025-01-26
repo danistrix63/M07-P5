@@ -12,30 +12,54 @@
         android:gravity="center"
         android:padding="16dp">
 
-        <EditText
-            android:id="@+id/edit_username"
-            android:hint="@string/hint_username"
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="Nombre de usuario"
+            android:textSize="16sp"
+            android:textColor="@color/md_theme_onSurface"
+            android:layout_marginBottom="4dp"/>
+
+        <EditText
+            android:id="@+id/edit_username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Introduce tu nombre de usuario"
             android:backgroundTint="@color/md_theme_primary"
             android:textColor="@color/md_theme_onSurface"
             android:layout_marginBottom="16dp" />
 
-        <EditText
-            android:id="@+id/edit_email"
-            android:hint="@string/hint_email"
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="Correo electrónico"
+            android:textSize="16sp"
+            android:textColor="@color/md_theme_onSurface"
+            android:layout_marginBottom="4dp"/>
+
+        <EditText
+            android:id="@+id/edit_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="ejemplo@correo.com"
             android:inputType="textEmailAddress"
             android:backgroundTint="@color/md_theme_primary"
             android:textColor="@color/md_theme_onSurface"
             android:layout_marginBottom="16dp" />
 
-        <EditText
-            android:id="@+id/edit_password"
-            android:hint="@string/hint_password"
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="Contraseña"
+            android:textSize="16sp"
+            android:textColor="@color/md_theme_onSurface"
+            android:layout_marginBottom="4dp"/>
+
+        <EditText
+            android:id="@+id/edit_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="********"
             android:inputType="textPassword"
             android:backgroundTint="@color/md_theme_primary"
             android:textColor="@color/md_theme_onSurface"
@@ -43,11 +67,13 @@
 
         <Button
             android:id="@+id/btn_register"
-            android:text="@string/btn_register"
+            android:text="Registrarse"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/md_theme_primary"
-            android:textColor="@color/md_theme_onPrimary" />
+            android:textColor="@color/md_theme_onPrimary"
+            android:layout_marginBottom="16dp" />
+
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/footer_fragment"
             android:name="com.example.m07_p5.FooterFragment"
