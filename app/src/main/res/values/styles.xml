@@ -9,6 +9,11 @@
         <item name="android:windowBackground">@color/md_theme_background</item>
     </style>
 
+    <!-- Tema de la SplashScreen sin logo de Android -->
+    <style name="Theme.SplashScreenNoLogo" parent="Theme.MaterialComponents.Light.NoActionBar">
+            <item name="android:windowBackground">@color/md_theme_onPrimary</item>
+    </style>
+
     <!-- Estilo para los títulos -->
     <style name="TitleStyle">
         <item name="android:textSize">24sp</item>
