@@ -56,4 +56,6 @@
     <!-- Preferences -->
     <string name="preferences_title">Preferencias</string>
     <string name="go_to_main">Ir al Menú Principal</string>
+
+    <string name="expiration_date">Fecha de caducidad</string>
 </resources>

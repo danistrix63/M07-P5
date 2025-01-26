@@ -139,10 +139,7 @@
             android:background="@color/md_theme_background"
             app:menu="@menu/bottom_nav_menu"
             app:itemIconTint="@color/nav_item_default"
-            app:itemTextColor="@color/nav_item_selected"
-            app:itemIconSize="32dp"
-            app:itemPadding="8dp"
-            app:labelVisibilityMode="labeled"/>
+            app:itemTextColor="@color/nav_item_selected"/>
     </LinearLayout>
 
     <!-- Menú Lateral (Navigation Drawer) -->
