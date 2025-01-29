@@ -72,7 +72,6 @@
         android:orientation="vertical"
         android:padding="12dp"
         android:background="@color/md_theme_surface"
-        android:cornerRadius="12dp"
         android:elevation="4dp">
 
         <TextView

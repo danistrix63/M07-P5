@@ -28,7 +28,7 @@ class AddFoodActivity : AppCompatActivity() {
             foodNameInput = findViewById(R.id.edit_food_name)
             foodQuantityInput = findViewById(R.id.edit_food_quantity)
             foodDateInput = findViewById(R.id.edit_food_date)
-            btnAddFood = findViewById(R.id.btn_add_food)
+            btnAddFood = findViewById(R.id.btn_save_food)
             bottomNav = findViewById(R.id.bottom_navigation)
 
             btnAddFood.setOnClickListener {
