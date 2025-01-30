@@ -5,25 +5,25 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.ListView
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
-import androidx.appcompat.app.ActionBarDrawerToggle
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
 
     private lateinit var txtCalories: TextView
     private lateinit var txtMacros: TextView
     private lateinit var listFoodHistory: ListView
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var navView: NavigationView
-    private lateinit var bottomNavigationView: BottomNavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+
+        setupBottomNavigation(R.id.bottom_navigation, R.id.nav_home)
 
         // Asignar vistas
         txtCalories = findViewById(R.id.txt_calories)
@@ -31,15 +31,10 @@ class MainActivity : AppCompatActivity() {
         listFoodHistory = findViewById(R.id.list_food_history)
         drawerLayout = findViewById(R.id.drawer_layout)
         navView = findViewById(R.id.navigation_view)
-        bottomNavigationView = findViewById(R.id.bottom_navigation)
-
-        // Configurar la Toolbar
-        val toolbar: Toolbar = findViewById(R.id.toolbar)
-        setSupportActionBar(toolbar)
 
         // Habilitar el botón del menú lateral
         val toggle = ActionBarDrawerToggle(
-            this, drawerLayout, toolbar,
+            this, drawerLayout, findViewById(R.id.toolbar),
             R.string.navigation_drawer_open, R.string.navigation_drawer_close
         )
         drawerLayout.addDrawerListener(toggle)
@@ -61,31 +56,13 @@ class MainActivity : AppCompatActivity() {
             true
         }
 
-        // Configurar el BottomNavigationView
-        bottomNavigationView.setOnItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.nav_home -> navegarSiNoEstaEn(MainActivity::class.java)
-                R.id.nav_list -> navegarSiNoEstaEn(ListActivity::class.java)
-                R.id.nav_settings -> navegarSiNoEstaEn(PreferencesActivity::class.java)
-            }
-            true
-        }
-
-        // Marcar la pestaña activa en el BottomNavigationView
-        bottomNavigationView.selectedItemId = when (this::class.java.simpleName) {
-            "MainActivity" -> R.id.nav_home
-            "ListActivity" -> R.id.nav_list
-            "PreferencesActivity" -> R.id.nav_settings
-            else -> R.id.nav_home
-        }
-
         // Simular datos de prueba
         actualizarDashboard()
     }
 
     private fun navegarSiNoEstaEn(destino: Class<*>) {
         if (this::class.java != destino) {
-            Log.d("BottomNav", "Navegando a ${destino.simpleName}")
+            Log.d("Navigation", "Navegando a ${destino.simpleName}")
             val intent = Intent(this, destino)
             startActivity(intent)
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
@@ -108,6 +85,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        bottomNavigationView.selectedItemId = R.id.nav_home
+        setupBottomNavigation(R.id.bottom_navigation, R.id.nav_home)
     }
 }

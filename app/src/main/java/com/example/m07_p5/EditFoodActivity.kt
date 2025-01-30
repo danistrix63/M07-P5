@@ -5,9 +5,8 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 
-class EditFoodActivity : AppCompatActivity() {
+class EditFoodActivity : BaseActivity() {
 
     private lateinit var editFoodName: EditText
     private lateinit var editFoodQuantity: EditText
@@ -18,6 +17,8 @@ class EditFoodActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_food)
+
+        setupBottomNavigation(R.id.bottom_navigation, R.id.nav_list)
 
         editFoodName = findViewById(R.id.edit_food_name)
         editFoodQuantity = findViewById(R.id.edit_food_quantity)

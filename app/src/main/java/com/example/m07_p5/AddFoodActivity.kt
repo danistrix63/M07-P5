@@ -1,18 +1,15 @@
 package com.example.m07_p5
 
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import org.json.JSONArray
 import org.json.JSONObject
 
-class AddFoodActivity : AppCompatActivity() {
+class AddFoodActivity : BaseActivity() {
 
     private lateinit var foodNameInput: EditText
     private lateinit var foodQuantityInput: EditText
@@ -23,6 +20,8 @@ class AddFoodActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_food)
+
+        setupBottomNavigation(R.id.bottom_navigation, R.id.nav_add_food)
 
         try {
             foodNameInput = findViewById(R.id.edit_food_name)
@@ -44,52 +43,13 @@ class AddFoodActivity : AppCompatActivity() {
                     Toast.makeText(this, "Completa todos los campos", Toast.LENGTH_SHORT).show()
                 }
             }
-
-            // Configuración del Bottom Navigation
-            bottomNav.setOnItemSelectedListener { item ->
-                when (item.itemId) {
-                    R.id.nav_home -> {
-                        if (javaClass.simpleName != "MainActivity") {
-                            startActivity(Intent(this, MainActivity::class.java))
-                            overridePendingTransition(0, 0)
-                            finish()
-                        }
-                        true
-                    }
-                    R.id.nav_list -> {
-                        if (javaClass.simpleName != "ListActivity") {
-                            startActivity(Intent(this, ListActivity::class.java))
-                            overridePendingTransition(0, 0)
-                            finish()
-                        }
-                        true
-                    }
-                    R.id.nav_add_food -> {
-                        // No hace nada porque ya estamos en AddFoodActivity
-                        true
-                    }
-                    R.id.nav_settings -> {
-                        if (javaClass.simpleName != "PreferencesActivity") {
-                            startActivity(Intent(this, PreferencesActivity::class.java))
-                            overridePendingTransition(0, 0)
-                            finish()
-                        }
-                        true
-                    }
-                    else -> false
-                }
-            }
-
-            // Marcar la pestaña activa en el BottomNavigationView
-            bottomNav.selectedItemId = R.id.nav_add_food
-
         } catch (e: Exception) {
             Log.e("AddFoodActivity", "Error en la inicialización", e)
         }
     }
 
     private fun saveFoodItem(name: String, quantity: String, date: String) {
-        val sharedPref = getSharedPreferences("food_list", Context.MODE_PRIVATE)
+        val sharedPref = getSharedPreferences("food_list", MODE_PRIVATE)
         val editor = sharedPref.edit()
 
         val foodListString = sharedPref.getString("foods", "[]") ?: "[]"
