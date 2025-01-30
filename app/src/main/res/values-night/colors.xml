@@ -10,4 +10,19 @@
     <color name="md_theme_onBackground">#FFFFFF</color>
     <color name="md_theme_surface">#121212</color>
     <color name="md_theme_onSurface">#FFFFFF</color>
+    <!-- Colores primarios -->
+    <color name="purple_500">#BB86FC</color>
+    <color name="purple_700">#6200EE</color>
+    <color name="purple_200">#3700B3</color>
+    <!-- Colores secundarios -->
+    <color name="teal_200">#03DAC6</color>
+    <color name="teal_700">#018786</color>
+    <!-- Grises -->
+    <color name="gray_light">#212121</color>
+    <color name="gray_dark">#121212</color>
+    <!-- Errores y advertencias -->
+    <color name="error_red">#CF6679</color>
+    <!-- Navegación -->
+    <color name="nav_item_selected">#FF8A65</color>
+    <color name="nav_item_default">#BDBDBD</color>
 </resources>

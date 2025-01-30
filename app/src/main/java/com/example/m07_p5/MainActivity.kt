@@ -2,11 +2,13 @@ package com.example.m07_p5
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.ListView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import androidx.appcompat.app.ActionBarDrawerToggle
 
@@ -17,6 +19,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var listFoodHistory: ListView
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var navView: NavigationView
+    private lateinit var bottomNavigationView: BottomNavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +31,7 @@ class MainActivity : AppCompatActivity() {
         listFoodHistory = findViewById(R.id.list_food_history)
         drawerLayout = findViewById(R.id.drawer_layout)
         navView = findViewById(R.id.navigation_view)
+        bottomNavigationView = findViewById(R.id.bottom_navigation)
 
         // Configurar la Toolbar
         val toolbar: Toolbar = findViewById(R.id.toolbar)
@@ -41,24 +45,51 @@ class MainActivity : AppCompatActivity() {
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
 
-        // Manejo del menú lateral con todas las opciones correctas
+        // Manejo del menú lateral
         navView.setNavigationItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.nav_home -> startActivity(Intent(this, MainActivity::class.java))
-                R.id.nav_list -> startActivity(Intent(this, ListActivity::class.java))
-                R.id.nav_profile -> startActivity(Intent(this, LoginActivity::class.java))
-                R.id.nav_tracking -> startActivity(Intent(this, TrackingActivity::class.java))
-                R.id.nav_dates -> startActivity(Intent(this, ConsumptionDatesActivity::class.java))
-                R.id.nav_add_food -> startActivity(Intent(this, AddFoodActivity::class.java))
-                R.id.nav_settings -> startActivity(Intent(this, PreferencesActivity::class.java))
+                R.id.nav_home -> navegarSiNoEstaEn(MainActivity::class.java)
+                R.id.nav_list -> navegarSiNoEstaEn(ListActivity::class.java)
+                R.id.nav_profile -> navegarSiNoEstaEn(LoginActivity::class.java)
+                R.id.nav_tracking -> navegarSiNoEstaEn(TrackingActivity::class.java)
+                R.id.nav_dates -> navegarSiNoEstaEn(ConsumptionDatesActivity::class.java)
+                R.id.nav_add_food -> navegarSiNoEstaEn(AddFoodActivity::class.java)
+                R.id.nav_settings -> navegarSiNoEstaEn(PreferencesActivity::class.java)
                 R.id.nav_logout -> finishAffinity()
             }
             drawerLayout.closeDrawers()
             true
         }
 
+        // Configurar el BottomNavigationView
+        bottomNavigationView.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_home -> navegarSiNoEstaEn(MainActivity::class.java)
+                R.id.nav_list -> navegarSiNoEstaEn(ListActivity::class.java)
+                R.id.nav_settings -> navegarSiNoEstaEn(PreferencesActivity::class.java)
+            }
+            true
+        }
+
+        // Marcar la pestaña activa en el BottomNavigationView
+        bottomNavigationView.selectedItemId = when (this::class.java.simpleName) {
+            "MainActivity" -> R.id.nav_home
+            "ListActivity" -> R.id.nav_list
+            "PreferencesActivity" -> R.id.nav_settings
+            else -> R.id.nav_home
+        }
+
         // Simular datos de prueba
         actualizarDashboard()
+    }
+
+    private fun navegarSiNoEstaEn(destino: Class<*>) {
+        if (this::class.java != destino) {
+            Log.d("BottomNav", "Navegando a ${destino.simpleName}")
+            val intent = Intent(this, destino)
+            startActivity(intent)
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+        }
     }
 
     private fun actualizarDashboard() {
@@ -73,5 +104,10 @@ class MainActivity : AppCompatActivity() {
 
         val adapter = android.widget.ArrayAdapter(this, android.R.layout.simple_list_item_1, historialAlimentos)
         listFoodHistory.adapter = adapter
+    }
+
+    override fun onResume() {
+        super.onResume()
+        bottomNavigationView.selectedItemId = R.id.nav_home
     }
 }

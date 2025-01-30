@@ -38,96 +38,71 @@
             android:padding="16dp"
             android:orientation="vertical">
 
-            <!-- CardView de calorías -->
-            <androidx.cardview.widget.CardView
-                android:id="@+id/card_calories"
+            <!-- Sección de calorías -->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:layout_marginBottom="8dp"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="6dp"
-                app:cardBackgroundColor="@color/gray_dark">
+                android:background="@color/gray_dark"
+                android:padding="16dp"
+                android:orientation="vertical"
+                android:gravity="center">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:padding="16dp">
+                <TextView
+                    android:id="@+id/txt_calories"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Calorías consumidas hoy: 1800 kcal"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"/>
+            </LinearLayout>
 
-                    <TextView
-                        android:id="@+id/txt_calories"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Calorías consumidas hoy: 1800 kcal"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/white"/>
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-            <!-- CardView de macros -->
-            <androidx.cardview.widget.CardView
-                android:id="@+id/card_macros"
+            <!-- Sección de macros -->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:layout_marginBottom="8dp"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="6dp"
-                app:cardBackgroundColor="@color/gray_dark">
+                android:background="@color/gray_dark"
+                android:padding="16dp"
+                android:orientation="vertical"
+                android:gravity="center">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:padding="16dp">
+                <TextView
+                    android:id="@+id/txt_macros"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Carbohidratos: 220g | Proteínas: 90g | Grasas: 60g"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"/>
+            </LinearLayout>
 
-                    <TextView
-                        android:id="@+id/txt_macros"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Carbohidratos: 220g | Proteínas: 90g | Grasas: 60g"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/white"/>
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-            <!-- CardView de historial de alimentos -->
-            <androidx.cardview.widget.CardView
-                android:id="@+id/card_food_history"
+            <!-- Sección de historial de alimentos -->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="6dp"
-                app:cardBackgroundColor="@color/gray_dark">
+                android:background="@color/gray_dark"
+                android:padding="16dp"
+                android:orientation="vertical">
 
-                <LinearLayout
+                <TextView
+                    android:text="Últimos alimentos registrados:"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:layout_marginBottom="8dp"/>
+
+                <ListView
+                    android:id="@+id/list_food_history"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:padding="16dp">
-
-                    <TextView
-                        android:text="Últimos alimentos registrados:"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/white"/>
-
-                    <ListView
-                        android:id="@+id/list_food_history"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:divider="@android:color/darker_gray"
-                        android:dividerHeight="1dp"/>
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
+                    android:layout_height="wrap_content"
+                    android:divider="@android:color/darker_gray"
+                    android:dividerHeight="1dp"/>
+            </LinearLayout>
 
         </LinearLayout>
 

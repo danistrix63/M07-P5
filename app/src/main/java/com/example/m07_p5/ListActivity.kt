@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import org.json.JSONArray
 
@@ -16,6 +17,7 @@ class ListActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: FoodAdapter
     private lateinit var fabAddFood: FloatingActionButton
+    private lateinit var bottomNavigationView: BottomNavigationView
     private val foodList = mutableListOf<FoodItem>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,6 +26,7 @@ class ListActivity : AppCompatActivity() {
 
         recyclerView = findViewById(R.id.recycler_view)
         fabAddFood = findViewById(R.id.fab_add_food)
+        bottomNavigationView = findViewById(R.id.bottom_navigation)
 
         recyclerView.layoutManager = LinearLayoutManager(this)
 
@@ -54,11 +57,35 @@ class ListActivity : AppCompatActivity() {
                 Toast.makeText(this, "Error al abrir la pantalla de agregar alimentos", Toast.LENGTH_SHORT).show()
             }
         }
+
+        // Configurar BottomNavigationView
+        bottomNavigationView.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_home -> navegarSiNoEstaEn(MainActivity::class.java)
+                R.id.nav_list -> {} // Ya estamos en esta actividad
+                R.id.nav_settings -> navegarSiNoEstaEn(PreferencesActivity::class.java)
+            }
+            true
+        }
+
+        bottomNavigationView.selectedItemId = R.id.nav_list
+        loadFoodItems()
     }
 
     override fun onResume() {
         super.onResume()
+        bottomNavigationView.selectedItemId = R.id.nav_list
         loadFoodItems()
+    }
+
+    private fun navegarSiNoEstaEn(destino: Class<*>) {
+        if (this::class.java != destino) {
+            Log.d("BottomNav", "Navegando a ${destino.simpleName}")
+            val intent = Intent(this, destino)
+            intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
+            startActivity(intent)
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+        }
     }
 
     private fun loadFoodItems() {
