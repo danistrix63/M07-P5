@@ -15,6 +15,7 @@ class FoodAdapter(
     class FoodViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val foodName: TextView = view.findViewById(R.id.food_name)
         val foodQuantity: TextView = view.findViewById(R.id.food_quantity)
+        val foodDate: TextView = view.findViewById(R.id.food_date)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FoodViewHolder {
@@ -26,8 +27,8 @@ class FoodAdapter(
     override fun onBindViewHolder(holder: FoodViewHolder, position: Int) {
         val food = foodList[position]
         holder.foodName.text = food.name
-        holder.foodQuantity.text = food.quantity
-
+        holder.foodQuantity.text = "${food.quantity} gr"
+        holder.foodDate.text = "Fecha: ${food.date}"
         holder.itemView.setOnClickListener {
             onItemClick(food)
         }
@@ -39,9 +40,4 @@ class FoodAdapter(
     }
 
     override fun getItemCount() = foodList.size
-
-    fun removeItem(position: Int) {
-        foodList.removeAt(position)
-        notifyItemRemoved(position)
-    }
 }

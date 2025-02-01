@@ -1,5 +1,6 @@
 package com.example.m07_p5
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -10,12 +11,19 @@ class RegisterActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
-        setupBottomNavigation(R.id.bottom_navigation, R.id.nav_home)
-
         val btnRegister: Button = findViewById(R.id.btn_register)
 
         btnRegister.setOnClickListener {
-            Toast.makeText(this, "Registrando usuario...", Toast.LENGTH_SHORT).show()
+            // Simula el registro exitoso
+            Toast.makeText(this, "Usuario registrado correctamente", Toast.LENGTH_SHORT).show()
+
+            // Navega de vuelta a LoginActivity
+            Log.d("RegisterActivity", "Registro exitoso, volviendo a LoginActivity")
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+
+            // Cierra RegisterActivity para que no quede en la pila de actividades
+            finish()
         }
     }
 }

@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/md_theme_background"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:gravity="top">
 
     <!-- Título Principal -->
     <TextView
@@ -17,14 +18,15 @@
         android:textStyle="bold"
         android:textColor="@color/md_theme_onBackground"
         android:layout_gravity="center_horizontal"
+        android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"/>
 
-    <!-- Línea separadora blanca -->
+    <!-- Separador -->
     <View
         android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="@android:color/white"
-        android:layout_marginBottom="16dp"/>
+        android:layout_height="1dp"
+        android:background="@color/md_theme_onSurface"
+        android:layout_marginBottom="12dp"/>
 
     <!-- Selector de Fecha -->
     <LinearLayout
@@ -37,10 +39,10 @@
         android:layout_marginBottom="16dp">
 
         <TextView
-            android:id="@+id/tv_select_date"
+            android:id="@+id/tv_selected_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Seleccionar fecha:"
+            android:text="Fecha: -"
             android:textSize="16sp"
             android:textColor="@color/md_theme_onBackground"
             android:layout_marginEnd="8dp"/>
@@ -50,90 +52,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Elegir Fecha"
-            android:backgroundTint="@color/md_theme_primary"
+            app:backgroundTint="@color/md_theme_primary"
             android:textColor="@android:color/white"/>
     </LinearLayout>
 
-    <!-- Lista de Alimentos Consumidos -->
-    <TextView
-        android:id="@+id/tv_food_list_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Alimentos consumidos:"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:textColor="@color/md_theme_onBackground"
-        android:layout_marginBottom="8dp"/>
-
-    <LinearLayout
+    <!-- RecyclerView -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:orientation="vertical"
-        android:padding="12dp"
-        android:background="@color/md_theme_surface"
-        android:elevation="4dp">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="🍏 Manzana - 95 kcal (26/01/2025)"
-            android:textSize="16sp"
-            android:textColor="@color/md_theme_onBackground"
-            android:padding="8dp"/>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@android:color/darker_gray"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="🍗 Pechuga de Pollo - 250 kcal (26/01/2025)"
-            android:textSize="16sp"
-            android:textColor="@color/md_theme_onBackground"
-            android:padding="8dp"/>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@android:color/darker_gray"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="🍚 Arroz Integral - 220 kcal (25/01/2025)"
-            android:textSize="16sp"
-            android:textColor="@color/md_theme_onBackground"
-            android:padding="8dp"/>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@android:color/darker_gray"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="🥑 Aguacate - 160 kcal (25/01/2025)"
-            android:textSize="16sp"
-            android:textColor="@color/md_theme_onBackground"
-            android:padding="8dp"/>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@android:color/darker_gray"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="🍞 Pan Integral - 80 kcal (24/01/2025)"
-            android:textSize="16sp"
-            android:textColor="@color/md_theme_onBackground"
-            android:padding="8dp"/>
-    </LinearLayout>
+        android:padding="8dp"
+        android:clipToPadding="false"
+        android:scrollbars="vertical"/>
 
     <!-- Botón flotante para agregar alimentos -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -146,16 +77,4 @@
         android:contentDescription="Añadir alimento"
         app:backgroundTint="@color/md_theme_primary"
         app:tint="@android:color/white"/>
-
-    <!-- Bottom Navigation View -->
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/md_theme_background"
-        app:menu="@menu/bottom_nav_menu"
-        app:itemIconTint="@color/nav_item_default"
-        app:itemTextColor="@color/nav_item_selected"
-        app:labelVisibilityMode="labeled"
-        android:layout_marginTop="8dp"/>
 </LinearLayout>

@@ -7,7 +7,6 @@ import android.widget.ListView
 import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.drawerlayout.widget.DrawerLayout
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 
 class MainActivity : BaseActivity() {
@@ -22,10 +21,8 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
         setupBottomNavigation(R.id.bottom_navigation, R.id.nav_home)
 
-        // Asignar vistas
         txtCalories = findViewById(R.id.txt_calories)
         txtMacros = findViewById(R.id.txt_macros)
         listFoodHistory = findViewById(R.id.list_food_history)
@@ -45,7 +42,11 @@ class MainActivity : BaseActivity() {
             when (item.itemId) {
                 R.id.nav_home -> navegarSiNoEstaEn(MainActivity::class.java)
                 R.id.nav_list -> navegarSiNoEstaEn(ListActivity::class.java)
-                R.id.nav_profile -> navegarSiNoEstaEn(LoginActivity::class.java)
+                R.id.nav_profile -> {
+                    Log.d("Navigation", "Clic en Perfil, abriendo LoginActivity")
+                    val intent = Intent(this, LoginActivity::class.java)
+                    startActivity(intent)
+                }
                 R.id.nav_tracking -> navegarSiNoEstaEn(TrackingActivity::class.java)
                 R.id.nav_dates -> navegarSiNoEstaEn(ConsumptionDatesActivity::class.java)
                 R.id.nav_add_food -> navegarSiNoEstaEn(AddFoodActivity::class.java)
@@ -56,7 +57,6 @@ class MainActivity : BaseActivity() {
             true
         }
 
-        // Simular datos de prueba
         actualizarDashboard()
     }
 

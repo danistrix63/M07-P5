@@ -30,6 +30,7 @@ class ListActivity : BaseActivity() {
 
         adapter = FoodAdapter(foodList,
             onItemClick = { food ->
+                Log.d("ListActivity", "Abriendo EditFoodActivity para ${food.name}")
                 val intent = Intent(this, EditFoodActivity::class.java).apply {
                     putExtra("FOOD_ID", food.id)
                     putExtra("FOOD_NAME", food.name)
@@ -45,15 +46,8 @@ class ListActivity : BaseActivity() {
 
         recyclerView.adapter = adapter
 
-        // Acción del FloatingActionButton para abrir AddFoodActivity
         fabAddFood.setOnClickListener {
-            try {
-                val intent = Intent(this, AddFoodActivity::class.java)
-                startActivity(intent)
-            } catch (e: Exception) {
-                Log.e("ListActivity", "Error al abrir AddFoodActivity", e)
-                Toast.makeText(this, "Error al abrir la pantalla de agregar alimentos", Toast.LENGTH_SHORT).show()
-            }
+            startActivity(Intent(this, AddFoodActivity::class.java))
         }
 
         loadFoodItems()
@@ -67,8 +61,7 @@ class ListActivity : BaseActivity() {
     private fun loadFoodItems() {
         foodList.clear()
         val sharedPref = getSharedPreferences("food_list", Context.MODE_PRIVATE)
-        val foodListString = sharedPref.getString("foods", "[]") ?: "[]"
-        val jsonArray = JSONArray(foodListString)
+        val jsonArray = JSONArray(sharedPref.getString("foods", "[]") ?: "[]")
 
         for (i in 0 until jsonArray.length()) {
             val foodObject = jsonArray.getJSONObject(i)
@@ -88,15 +81,17 @@ class ListActivity : BaseActivity() {
         val sharedPref = getSharedPreferences("food_list", Context.MODE_PRIVATE)
         val editor = sharedPref.edit()
 
-        val foodListString = sharedPref.getString("foods", "[]") ?: "[]"
-        val jsonArray = JSONArray(foodListString)
+        val jsonArray = JSONArray(sharedPref.getString("foods", "[]") ?: "[]")
 
-        jsonArray.remove(position)
-
-        editor.putString("foods", jsonArray.toString())
-        editor.apply()
+        if (position in 0 until jsonArray.length()) {
+            jsonArray.remove(position)
+            editor.putString("foods", jsonArray.toString())
+            editor.apply()
+        }
 
         foodList.removeAt(position)
         adapter.notifyItemRemoved(position)
+
+        Toast.makeText(this, "Alimento eliminado", Toast.LENGTH_SHORT).show()
     }
 }

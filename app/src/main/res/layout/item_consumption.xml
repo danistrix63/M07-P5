@@ -17,10 +17,10 @@
         android:padding="8dp"/>
 
     <TextView
-        android:id="@+id/food_quantity"
+        android:id="@+id/food_calories"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Cantidad"
+        android:text="Calorías"
         android:textSize="16sp"
         android:textColor="@color/md_theme_onSurface"
         android:padding="8dp"/>

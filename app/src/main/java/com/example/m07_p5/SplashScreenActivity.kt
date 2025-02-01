@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 
 class SplashScreenActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        setTheme(R.style.Theme_SplashScreenNoLogo)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
@@ -18,7 +19,8 @@ class SplashScreenActivity : AppCompatActivity() {
         logo.startAnimation(anim)
 
         Handler(Looper.getMainLooper()).postDelayed({
-            startActivity(Intent(this, MainActivity::class.java))
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
             finish()
         }, 2000)
     }

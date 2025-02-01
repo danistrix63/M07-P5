@@ -1,4 +1,5 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.m07_p5">
 
     <application
         android:allowBackup="true"
@@ -8,7 +9,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NutriTrack">
 
-        <!-- Animación splash -->
+        <!-- SplashScreen -->
         <activity
             android:name=".SplashScreenActivity"
             android:exported="true"
@@ -22,51 +23,19 @@
         <!-- Actividad Principal -->
         <activity
             android:name=".MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="true" />
 
         <!-- Actividades Secundarias -->
-        <activity
-            android:name=".AddFoodActivity"
-            android:exported="false" />
-
-        <activity
-            android:name=".ConsumptionDatesActivity"
-            android:exported="false" />
-
-        <activity
-            android:name=".LoginActivity"
-            android:exported="false" />
-
-        <activity
-            android:name=".PreferencesActivity"
-            android:exported="false" />
-
-        <activity
-            android:name=".RecoverPasswordActivity"
-            android:exported="false" />
-
-        <activity
-            android:name=".RegisterActivity"
-            android:exported="false" />
-
-        <activity
-            android:name=".TrackingActivity"
-            android:exported="false" />
-
-        <!-- Actividad para editar alimentos -->
-        <activity
-            android:name=".EditFoodActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ListActivity"
-            android:exported="true"/>
-
-
+        <activity android:name=".AddFoodActivity" android:exported="false" />
+        <activity android:name=".ConsumptionDatesActivity" android:exported="false" />
+        <activity android:name=".LoginActivity" android:exported="false" />
+        <activity android:name=".PreferencesActivity" android:exported="false" />
+        <activity android:name=".RecoverPasswordActivity" android:exported="false" />
+        <activity android:name=".RegisterActivity" android:exported="false" />
+        <activity android:name=".TrackingActivity" android:exported="false" />
+        <activity android:name=".EditFoodActivity" android:exported="false" />
+        <activity android:name=".ListActivity" android:exported="true"/>
+        <activity android:name=".AddConsumptionActivity" android:exported="false" />
+        <activity android:name=".EditConsumptionActivity" android:exported="false" />
     </application>
-
 </manifest>

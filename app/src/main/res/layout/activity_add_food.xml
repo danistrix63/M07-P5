@@ -101,17 +101,6 @@
         android:layout_below="@id/layout_food_form"
         android:layout_marginBottom="12dp"/>
 
-    <!-- Botón Eliminar (opcional) -->
-    <Button
-        android:id="@+id/btn_delete_food"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Eliminar"
-        android:backgroundTint="@color/md_theme_error"
-        android:textColor="@android:color/white"
-        android:layout_below="@id/btn_save_food"
-        android:layout_marginBottom="16dp"/>
-
     <!-- Bottom Navigation View -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
